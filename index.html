@@ -1,156 +1,104 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎶 NUESTRAS CANCIONES AMOR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <header>
+            <h1>🎶 NUESTRAS CANCIONES AMOR</h1>
+            <p class="subtitulo">Los momentos que nos unen, en cada nota 💛</p>
+        </header>
 
-body {
-    background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95);
-    min-height: 100vh;
-    color: #f0f9ff;
-    padding: 20px;
-}
+        <section class="reproductor-activo">
+            <div class="video-contenedor">
+                <iframe id="reproductor" width="100%" height="315" 
+                    src="" 
+                    title="Reproductor de YouTube" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="info-cancion">
+                <h2 id="titulo-cancion">Selecciona una canción</h2>
+                <p id="artista-cancion">—</p>
+                <p id="historia-cancion" class="historia">Elige una canción de la lista para escucharla aquí 💛</p>
+            </div>
+        </section>
 
-.contenedor-principal {
-    max-width: 900px;
-    margin: 0 auto;
-}
+        <section class="lista-canciones">
+            <h3>📋 Nuestra Playlist</h3>
+            <ul id="playlist"></ul>
+        </section>
+    </div>
 
-header {
-    text-align: center;
-    padding: 30px 20px;
-}
+    <footer>
+        <p>Hecho con 💛 — Para siempre</p>
+    </footer>
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
-    background: linear-gradient(90deg, #fbbf24, #f59e0b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    <script>
+        const canciones = [
+            {
+                titulo: "En Tus Manos",
+                artista: "Los Bybys",
+                videoId: "zA7EldXYens",
+                historia: "Porque todo lo que somos y todo lo que seremos está en tus manos. Nos da seguridad, confianza y la certeza de que juntos podemos con todo. Esta canción representa la entrega total, el decir 'aquí estoy, confío en ti' 💞✨"
+            },
+            {
+                titulo: "A Dónde Vamos",
+                artista: "Morat",
+                videoId: "TYrcdhots80",
+                historia: "Contigo no importa el destino, lo que importa es ir de la mano. Esta canción nos recuerda que lo mejor no es saber a dónde vamos, sino saber con quién vamos. Y contigo, a cualquier lugar 💫❤️"
+            },
+            {
+                titulo: "Aprender A Quererte",
+                artista: "Morat",
+                videoId: "OukQDrJ7QRQ",
+                historia: "Quererte no es algo que se aprende, pero cada día me esfuerzo por hacerlo mejor. Esta canción dice exactamente lo que siento: quiero entenderte, cuidarte y amarte cada día más, de la forma que mereces 💜📖"
+            },
+            {
+                titulo: "Noche Perfecta",
+                artista: "Morat",
+                videoId: "4P9hudHysXA",
+                historia: "La perfección no está en el lugar, está en estar contigo. Cada noche a tu lado es especial, pero hay una que guardaré para siempre como la más bonita de todas. Tú, yo y el momento justo ✨🌙"
+            }
+        ];
 
-.subtitulo {
-    color: #c7d2fe;
-    font-size: 1.1rem;
-}
+        const lista = document.getElementById('playlist');
+        const reproductor = document.getElementById('reproductor');
+        const tituloActual = document.getElementById('titulo-cancion');
+        const artistaActual = document.getElementById('artista-cancion');
+        const historiaActual = document.getElementById('historia-cancion');
 
-.reproductor-activo {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    align-items: center;
-}
+        function cargarPlaylist() {
+            lista.innerHTML = '';
+            canciones.forEach(cancion => {
+                const li = document.createElement('li');
+                li.className = 'cancion-item';
+                li.innerHTML = `
+                    <div class="miniatura">▶</div>
+                    <div class="datos">
+                        <strong>${cancion.titulo}</strong>
+                        <span>${cancion.artista}</span>
+                    </div>
+                `;
+                li.addEventListener('click', () => mostrarCancion(cancion));
+                lista.appendChild(li);
+            });
+        }
 
-.portada {
-    width: 200px;
-    height: 200px;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
+        function mostrarCancion(cancion) {
+            reproductor.src = `https://www.youtube.com/embed/${cancion.videoId}?autoplay=1`;
+            tituloActual.textContent = cancion.titulo;
+            artistaActual.textContent = cancion.artista;
+            historiaActual.textContent = cancion.historia;
+        }
 
-.info-cancion {
-    flex: 1;
-    min-width: 250px;
-}
-
-.info-cancion h2 {
-    font-size: 1.4rem;
-    margin-bottom: 6px;
-    color: #fef3c7;
-}
-
-.historia {
-    margin-top: 12px;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #ddd6fe;
-    font-style: italic;
-}
-
-.boton-escuchar {
-    display: inline-block;
-    background: linear-gradient(90deg, #ef4444, #f97316);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-.boton-escuchar:hover {
-    transform: scale(1.05);
-}
-
-.lista-canciones {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.lista-canciones h3 {
-    margin-bottom: 18px;
-    color: #fcd34d;
-}
-
-#playlist {
-    list-style: none;
-}
-
-.cancion-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 14px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.cancion-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(8px);
-}
-
-.miniatura {
-    width: 50px;
-    height: 50px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-
-.datos {
-    display: flex;
-    flex-direction: column;
-}
-
-.datos span {
-    font-size: 0.9rem;
-    color: #a5b4fc;
-    margin-top: 3px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    color: #a5b4fc;
-}
-
-@media (max-width: 600px) {
-    .reproductor-activo {
-        justify-content: center;
-        text-align: center;
-    }
-}
+        cargarPlaylist();
+    </script>
+</body>
+</html>
