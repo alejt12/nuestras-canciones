@@ -1,459 +1,99 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚿 Plomería Roberto — Servicios de Confianza</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        :root {
-            --azul-oscuro: #0F2B48;
-            --azul: #1E6FBF;
-            --azul-claro: #4FB3F5;
-            --agua: #22A6B3;
-            --dorado: #F5A623;
-            --gris-claro: #F5F7FA;
-            --gris-texto: #444444;
-            --blanco: #FFFFFF;
-            --sombra: rgba(0,0,0,0.1);
-        }
-        body { background-color: var(--gris-claro); color: var(--gris-texto); line-height: 1.6; }
-
-        /* ---- CABECERA ---- */
-        header {
-            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-            color: white;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            position: relative;
-        }
-        header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
-        header p { font-size: 1.1rem; opacity: 0.9; }
-        .boton-candado {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--dorado);
-            color: var(--azul-oscuro);
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        .boton-candado:hover { opacity: 0.9; }
-
-        /* ---- CONTENEDOR GENERAL ---- */
-        main { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1rem; }
-        .tarjeta {
-            background: var(--blanco);
-            border-radius: 14px;
-            padding: 1.8rem;
-            box-shadow: 0 4px 14px var(--sombra);
-            margin-bottom: 1.8rem;
-        }
-        h2 { color: var(--azul-oscuro); margin-bottom: 1rem; font-size: 1.4rem; border-bottom: 2px solid var(--agua); padding-bottom: 0.5rem; }
-        h3 { color: var(--azul); margin: 1rem 0 0.5rem; }
-
-        /* ---- BOTONES ---- */
-        .botones-principales {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .boton {
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-        .boton:hover { transform: translateY(-2px); opacity: 0.95; }
-
-        .boton-servicios  { background: var(--azul); color: white; }
-        .boton-horarios   { background: var(--agua); color: white; }
-        .boton-whatsapp   { background: #25D366; color: white; }
-        .boton-instagram  { background: linear-gradient(45deg, #f09439, #e62e7c, #4c63d2); color: white; }
-        .boton-contacto   { background: var(--dorado); color: var(--azul-oscuro); }
-        .boton-agendar    { background: var(--azul-oscuro); color: white; }
-
-        /* ---- SECCIONES ---- */
-        .oculto { display: none !important; }
-        .servicio-item {
-            padding: 1rem;
-            border-left: 4px solid var(--azul);
-            background: var(--gris-claro);
-            border-radius: 8px;
-            margin: 0.6rem 0;
-        }
-        .horario-item {
-            padding: 0.8rem;
-            border-bottom: 1px dashed #ccc;
-            display: flex;
-            justify-content: space-between;
-        }
-        .dia { font-weight: bold; color: var(--azul-oscuro); }
-        .hora { color: var(--agua); }
-
-        /* ---- FORMULARIOS ---- */
-        input, select, textarea {
-            width: 100%;
-            padding: 0.85rem;
-            margin: 0.5rem 0 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        button[type="submit"], .btn-guardar {
-            background: var(--azul);
-            color: white;
-            border: none;
-            padding: 0.9rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-        button[type="submit"]:hover, .btn-guardar:hover { opacity: 0.92; }
-
-        /* ---- OPINIONES ---- */
-        .opinion {
-            background: #f0f9fa;
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 0.8rem 0;
-            border-left: 4px solid var(--agua);
-        }
-        .estrellas { color: #F5A623; font-size: 1.2rem; }
-        .correo-opinion { font-size: 0.85rem; color: #666; margin-top: 0.3rem; }
-
-        /* ---- PIE DE PÁGINA ---- */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            color: white;
-            background: var(--azul-oscuro);
-            margin-top: 2rem;
-        }
-
-        /* ---- RESPONSIVO ---- */
-        @media(max-width: 600px){
-            header h1 { font-size: 1.4rem; }
-            .boton-candado { position: static; transform: none; margin-top: 0.8rem; }
-            .horario-item { flex-direction: column; gap: 0.3rem; }
-        }
-    </style>
+    <title>🎶 Nuestras Canciones</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="contenedor-principal">
+        <header>
+            <h1>🎶 Nuestras Canciones</h1>
+            <p class="subtitulo">Los momentos que nos unen, en cada nota</p>
+        </header>
 
-    <header>
-        <h1>🚿 Plomería Roberto</h1>
-        <p>Reparaciones, instalaciones y emergencias — Servicio confiable y rápido</p>
-        <button class="boton-candado" onclick="pedirClave()">🔐 Iniciar Sesión</button>
-    </header>
-
-    <main>
-        <!-- ===== SECCIÓN CLIENTES (lo que ven todos) ===== -->
-        <div id="vistaClientes">
-            <div class="tarjeta">
-                <h2>👋 Bienvenido</h2>
-                <p>Plomería profesional para tu hogar y negocio. Calidad, confianza y garantía en cada trabajo.</p>
-
-                <div class="botones-principales">
-                    <button class="boton boton-servicios" onclick="mostrarSeccion('seccionServicios')">🔧 Servicios</button>
-                    <button class="boton boton-horarios" onclick="mostrarSeccion('seccionHorarios')">🕐 Horarios</button>
-                    <a class="boton boton-whatsapp" href="https://wa.me/" target="_blank">💬 WhatsApp</a>
-                    <a class="boton boton-instagram" href="#" target="_blank">📷 Instagram</a>
-                    <button class="boton boton-agendar" onclick="mostrarSeccion('seccionAgendar')">📅 Agendar Cita</button>
-                    <button class="boton boton-contacto" onclick="mostrarSeccion('seccionOpiniones')">⭐ Opiniones</button>
-                </div>
+        <section class="reproductor-activo">
+            <img id="portada-actual" src="https://via.placeholder.com/200" alt="Portada" class="portada">
+            <div class="info-cancion">
+                <h2 id="titulo-cancion">Selecciona una canción</h2>
+                <p id="artista-cancion">—</p>
+                <p id="historia-cancion" class="historia">Elige una canción de la lista para ver su historia.</p>
             </div>
+            <audio id="reproductor" controls>
+                Tu navegador no soporta audio.
+            
+        </section>
 
-            <!-- === SERVICIOS === -->
-            <div id="seccionServicios" class="tarjeta oculto">
-                <h2>🔧 Servicios que ofrezco</h2>
-                <div class="servicio-item">
-                    <strong>🚰 Instalación y reparación de tuberías</strong>
-                    <p>Detectamos y reparamos fugas en tuberías de agua potable y drenaje.</p>
-                </div>
-                <div class="servicio-item">
-                    <strong>🚽 Instalación y reparación de sanitarios</strong>
-                    <p>Colocación, cambio de piezas, desazolve y reparación de fugas en inodoros.</p>
-                </div>
-                <div class="servicio-item">
-                    <strong>🛁 Regaderas, llaves y grifos</strong>
-                    <p>Cambio, instalación y reparación de llaves, regaderas y mezcladoras.</p>
-                </div>
-                <div class="servicio-item">
-                    <strong>🔥 Calentadores y boilers</strong>
-                    <p>Instalación, mantenimiento y reparación de calentadores de agua.</p>
-                </div>
-                <div class="servicio-item">
-                    <strong>🏠 Detección de fugas</strong>
-                    <p>Localización precisa de fugas sin romper paredes, con equipo especializado.</p>
-                </div>
-                <div class="servicio-item">
-                    <strong>⚠️ Servicio de emergencia</strong>
-                    <p>Atención de fugas graves y desazolves urgentes.</p>
-                </div>
-                <button class="boton boton-servicios" style="width:auto;margin-top:1rem;" onclick="ocultarTodo()">← Regresar</button>
-            </div>
-
-            <!-- === HORARIOS === -->
-            <div id="seccionHorarios" class="tarjeta oculto">
-                <h2>🕐 Horarios de Atención</h2>
-                <div class="horario-item"><span class="dia">Lunes</span><span class="hora">8:00 AM — 6:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Martes</span><span class="hora">8:00 AM — 6:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Miércoles</span><span class="hora">8:00 AM — 6:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Jueves</span><span class="hora">8:00 AM — 6:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Viernes</span><span class="hora">8:00 AM — 6:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Sábado</span><span class="hora">8:00 AM — 2:00 PM</span></div>
-                <div class="horario-item"><span class="dia">Domingo</span><span class="hora">Cerrado</span></div>
-                <p style="margin-top:1rem; font-style:italic;">⚠️ Emergencias: atención especial fuera de horario previo acuerdo.</p>
-                <button class="boton boton-horarios" style="width:auto;margin-top:1rem;" onclick="ocultarTodo()">← Regresar</button>
-            </div>
-
-            <!-- === AGENDAR CITA === -->
-            <div id="seccionAgendar" class="tarjeta oculto">
-                <h2>📅 Agendar Cita</h2>
-                <p>Elige la fecha y hora que te convenga. Te confirmaré lo antes posible.</p>
-
-                <label class="etiqueta">Tu nombre completo:</label>
-                <input type="text" id="nombreCliente" placeholder="Escribe tu nombre...">
-
-                <label class="etiqueta">Tu correo electrónico:</label>
-                <input type="email" id="correoCliente" placeholder="tucorreo@ejemplo.com">
-
-                <label class="etiqueta">Tu teléfono:</label>
-                <input type="tel" id="telefonoCliente" placeholder="(55) 1234-5678">
-
-                <label class="etiqueta">📆 Fecha:</label>
-                <input type="date" id="fechaCita">
-
-                <label class="etiqueta">🕐 Hora:</label>
-                <select id="horaCita">
-                    <option value="">-- Elige una hora --</option>
-                    <option>08:00 AM</option><option>09:00 AM</option><option>10:00 AM</option>
-                    <option>11:00 AM</option><option>12:00 PM</option><option>01:00 PM</option>
-                    <option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option>
-                    <option>05:00 PM</option>
-                </select>
-
-                <label class="etiqueta">🔧 ¿Qué servicio necesitas?</label>
-                <textarea id="descripcionServicio" placeholder="Describe brevemente tu problema o servicio que necesitas..."></textarea>
-
-                <button class="btn-guardar" onclick="guardarCita()">✅ Enviar Solicitud de Cita</button>
-                <div id="listaCitas"></div>
-                <button class="boton boton-agendar" style="width:auto;margin-top:1rem;" onclick="ocultarTodo()">← Regresar</button>
-            </div>
-
-            <!-- === OPINIONES === -->
-            <div id="seccionOpiniones" class="tarjeta oculto">
-                <h2>⭐ Opiniones de Clientes</h2>
-
-                <label class="etiqueta">Tu correo electrónico:</label>
-                <input type="email" id="correoOpinion" placeholder="tucorreo@ejemplo.com">
-
-                <label class="etiqueta">Calificación:</label>
-                <select id="calificacion">
-                    <option value="5">⭐⭐⭐⭐⭐ — Excelente</option>
-                    <option value="4">⭐⭐⭐⭐ — Muy Bueno</option>
-                    <option value="3">⭐⭐⭐ — Bueno</option>
-                    <option value="2">⭐⭐ — Regular</option>
-                    <option value="1">⭐ — Malo</option>
-                </select>
-
-                <label class="etiqueta">Tu comentario:</label>
-                <textarea id="comentarioOpinion" placeholder="Cuéntanos tu experiencia..."></textarea>
-
-                <button class="btn-guardar" onclick="enviarOpinion()">✅ Enviar Opinión</button>
-
-                <h3 style="margin-top:2rem;">📋 Lo que dicen nuestros clientes</h3>
-                <div id="listaOpiniones"></div>
-                <button class="boton boton-contacto" style="width:auto;margin-top:1rem;" onclick="ocultarTodo()">← Regresar</button>
-            </div>
-        </div>
-
-        <!-- ===== PANEL DE ROBERTO (SOLO ADMINISTRADOR) ===== -->
-        <div id="panelAdmin" class="oculto">
-            <div class="tarjeta">
-                <h2>🛡️ Panel de Administración — Roberto</h2>
-                <p style="color:green; font-weight:bold;">✅ Bienvenido Roberto. Aquí puedes ver todo lo que los clientes envían.</p>
-
-                <h3>📅 Citas Solicitadas</h3>
-                <div id="citasAdmin"></div>
-
-                <h3 style="margin-top:2rem;">⭐ Opiniones Recibidas</h3>
-                <div id="opinionesAdmin"></div>
-
-                <hr style="margin:2rem 0;">
-                <button class="boton" style="background:#c0392b; color:white; width:auto;" onclick="cerrarSesion()">🚪 Cerrar Sesión</button>
-                <button class="boton" style="background:#444; color:white; width:auto; margin-left:1rem;" onclick="if(confirm('¿Borrar todo?')){localStorage.clear(); location.reload();}">🗑️ Borrar Todo</button>
-            </div>
-        </div>
-    </main>
+        <section class="lista-canciones">
+            <h3>📋 Mi Playlist</h3>
+            <ul id="playlist"></ul>
+        </section>
+    </div>
 
     <footer>
-        <p>🚿 Plomería Roberto — Servicios de Confianza © 2026</p>
-        <p style="font-size:0.9rem; margin-top:0.3rem;">Teléfono: (Pendiente) | WhatsApp: (Pendiente) | Trabajos con garantía</p>
+        <p>Hecho con 💛 — Para siempre</p>
     </footer>
 
     <script>
-        const CONTRASEÑA_ADMIN = "roberto123"; // 🔑 Cambia esta contraseña cuando quieras
+        const canciones = [
+            {
+                titulo: "Nuestra primera canción",
+                artista: "Artista",
+                portada: "https://via.placeholder.com/200/4a90e2/ffffff?text=🎵+1",
+                audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                historia: "Esta canción sonaba el día que nos conocimos. Fue el inicio de todo 💫"
+            },
+            {
+                titulo: "Nuestro viaje",
+                artista: "Otro artista",
+                portada: "https://via.placeholder.com/200/e74c3c/ffffff?text=🎵+2",
+                audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                historia: "La cantamos juntos en el camino y el tiempo se detuvo 🚗✨"
+            },
+            {
+                titulo: "Promesa",
+                artista: "Tu artista favorito",
+                portada: "https://via.placeholder.com/200/2ecc71/ffffff?text=🎵+3",
+                audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                historia: "Nos recordó que juntos todo es más fuerte 💛"
+            }
+        ];
 
-        // === INICIO ===
-        window.onload = function(){
-            cargarOpiniones();
-            cargarCitas();
-        };
+        const lista = document.getElementById('playlist');
+        const reproductor = document.getElementById('reproductor');
+        const portadaActual = document.getElementById('portada-actual');
+        const tituloActual = document.getElementById('titulo-cancion');
+        const artistaActual = document.getElementById('artista-cancion');
+        const historiaActual = document.getElementById('historia-cancion');
 
-        // === MOSTRAR / OCULTAR SECCIONES ===
-        function mostrarSeccion(id){
-            document.querySelectorAll('.tarjeta').forEach(t => {
-                if(t.id !== 'vistaClientes' && t.id !== 'panelAdmin') t.classList.add('oculto');
+        function cargarPlaylist() {
+            lista.innerHTML = '';
+            canciones.forEach(cancion => {
+                const li = document.createElement('li');
+                li.className = 'cancion-item';
+                li.innerHTML = `
+                    <img src="${cancion.portada}" alt="${cancion.titulo}" class="miniatura">
+                    <div class="datos">
+                        <strong>${cancion.titulo}</strong>
+                        <span>${cancion.artista}</span>
+                    </div>
+                `;
+                li.addEventListener('click', () => reproducir(cancion));
+                lista.appendChild(li);
             });
-            document.getElementById(id).classList.remove('oculto');
-        }
-        function ocultarTodo(){
-            document.querySelectorAll('.tarjeta').forEach(t => {
-                if(t.id !== 'vistaClientes' && t.id !== 'panelAdmin') t.classList.add('oculto');
-            });
         }
 
-        // === INICIAR SESIÓN DE ROBERTO ===
-        function pedirClave(){
-            const clave = prompt("🔐 Escribe la contraseña de Roberto:");
-            if(clave === CONTRASEÑA_ADMIN){
-                alert("✅ Bienvenido Roberto. Tienes acceso completo.");
-                document.getElementById('vistaClientes').classList.add('oculto');
-                document.getElementById('panelAdmin').classList.remove('oculto');
-                cargarOpiniones();
-                cargarCitas();
-            } else {
-                alert("❌ Contraseña incorrecta");
-            }
-        }
-        function cerrarSesion(){
-            document.getElementById('panelAdmin').classList.add('oculto');
-            document.getElementById('vistaClientes').classList.remove('oculto');
+        function reproducir(cancion) {
+            portadaActual.src = cancion.portada;
+            tituloActual.textContent = cancion.titulo;
+            artistaActual.textContent = cancion.artista;
+            historiaActual.textContent = cancion.historia;
+            reproductor.src = cancion.audio;
+            reproductor.play();
         }
 
-        // === GUARDAR CITA ===
-        function guardarCita(){
-            const nombre = document.getElementById('nombreCliente').value.trim();
-            const correo = document.getElementById('correoCliente').value.trim();
-            const telefono = document.getElementById('telefonoCliente').value.trim();
-            const fecha = document.getElementById('fechaCita').value;
-            const hora = document.getElementById('horaCita').value;
-            const descripcion = document.getElementById('descripcionServicio').value.trim();
-
-            if(!nombre || !fecha || !hora){
-                alert("⚠️ Escribe tu nombre, fecha y hora por favor");
-                return;
-            }
-
-            const cita = {
-                nombre, correo, telefono, fecha, hora, descripcion,
-                fechaRegistro: new Date().toLocaleString("es-MX")
-            };
-
-            let citas = JSON.parse(localStorage.getItem("_citasPlomeria") || "[]");
-            citas.push(cita);
-            localStorage.setItem("_citasPlomeria", JSON.stringify(citas));
-
-            alert("✅ ¡Cita enviada! Roberto se pondrá en contacto contigo pronto.");
-            document.getElementById('nombreCliente').value = "";
-            document.getElementById('correoCliente').value = "";
-            document.getElementById('telefonoCliente').value = "";
-            document.getElementById('fechaCita').value = "";
-            document.getElementById('horaCita').value = "";
-            document.getElementById('descripcionServicio').value = "";
-            cargarCitas();
-        }
-
-        function cargarCitas(){
-            const citas = JSON.parse(localStorage.getItem("_citasPlomeria") || "[]");
-            let html = "";
-            if(citas.length === 0){
-                html = "<p style='color:#777;'>No hay citas solicitadas todavía.</p>";
-            } else {
-                citas.forEach((c, i) => {
-                    html += `<div style='border:1px solid #ddd; border-radius:8px; padding:1rem; margin:0.5rem 0;'>
-                        <strong>👤 ${c.nombre}</strong> — 📅 ${c.fecha} a las ${c.hora}<br>
-                        📧 Correo: ${c.correo || 'No indicado'}<br>
-                        📞 Teléfono: ${c.telefono || 'No indicado'}<br>
-                        🔧 Servicio: ${c.descripcion || 'No especificado'}<br>
-                        <small>🕓 Enviado: ${c.fechaRegistro}</small>
-                        <button onclick="eliminarCita(${i})" style="background:#e74c3c; color:white; border:none; padding:0.4rem 0.7rem; border-radius:5px; margin-top:0.5rem; cursor:pointer;">🗑️ Eliminar</button>
-                    </div>`;
-                });
-            }
-            document.getElementById('listaCitas').innerHTML = html;
-            document.getElementById('citasAdmin').innerHTML = html;
-        }
-        function eliminarCita(indice){
-            if(!confirm("¿Eliminar esta cita?")) return;
-            let citas = JSON.parse(localStorage.getItem("_citasPlomeria") || "[]");
-            citas.splice(indice, 1);
-            localStorage.setItem("_citasPlomeria", JSON.stringify(citas));
-            cargarCitas();
-        }
-
-        // === GUARDAR OPINIÓN ===
-        function enviarOpinion(){
-            const correo = document.getElementById('correoOpinion').value.trim();
-            const estrellas = parseInt(document.getElementById('calificacion').value);
-            const comentario = document.getElementById('comentarioOpinion').value.trim();
-
-            if(!correo || !comentario){
-                alert("⚠️ Escribe tu correo y tu comentario por favor");
-                return;
-            }
-
-            const estrellaTexto = "⭐".repeat(estrellas);
-            const opinion = {
-                correo, estrellas, estrellaTexto, comentario,
-                fecha: new Date().toLocaleString("es-MX")
-            };
-
-            let opiniones = JSON.parse(localStorage.getItem("_opinionesPlomeria") || "[]");
-            opiniones.push(opinion);
-            localStorage.setItem("_opinionesPlomeria", JSON.stringify(opiniones));
-
-            alert("✅ ¡Gracias por tu opinión!");
-            document.getElementById('correoOpinion').value = "";
-            document.getElementById('comentarioOpinion').value = "";
-            cargarOpiniones();
-        }
-
-        function cargarOpiniones(){
-            const opiniones = JSON.parse(localStorage.getItem("_opinionesPlomeria") || "[]");
-            let html = "";
-            if(opiniones.length === 0){
-                html = "<p style='color:#777;'>No hay opiniones todavía. ¡Sé el primero en opinar!</p>";
-            } else {
-                opiniones.forEach((o, i) => {
-                    html += `<div class='opinion'>
-                        <div class='estrellas'>${o.estrellaTexto}</div>
-                        <p>${o.comentario}</p>
-                        <div class='correo-opinion'>📧 ${o.correo} — ${o.fecha}</div>
-                    </div>`;
-                });
-            }
-            document.getElementById('listaOpiniones').innerHTML = html;
-            document.getElementById('opinionesAdmin').innerHTML = html;
-        }
+        cargarPlaylist();
     </script>
 </body>
 </html>
