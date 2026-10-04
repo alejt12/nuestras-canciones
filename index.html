@@ -62,7 +62,7 @@
             },
             {
                 titulo: "Quiero y Necesito",
-                artista: "Jpse Manuel Figueroa",
+                artista: "Jesse Manuel Figueroa",
                 videoId: "4P9hudHysXA",
                 historia: "La perfección no está en el lugar, está en estar contigo. Cada noche a tu lado es especial, pero hay una que guardaré para siempre como la más bonita de todas. Tú, yo y el momento justo ✨🌙"
             },
@@ -70,13 +70,13 @@
                 titulo: "Colgando en Tus Manos",
                 artista: "Pedro Baute",
                 videoId: "qExd-3oCTl4",
-                historia: "Como si todo dependiera de ti, así me siento: en tus manos está mi felicidad, mi corazón y mi futuro. No quiero estar en ningún otro lugar que no sea entre tus brazos, porque ahí es donde todo tiene sentido 💖✨"
+                historia: "Como si todo dependiera de ti, así me siento: en tus manos está mi felicidad, mi corazón y mi futuro. No quiero estar en ningún otro lugar que no sea entre tus brazos 💖✨"
             },
             {
                 titulo: "El Milagro de Tus Ojos",
                 artista: "Pedro Fernández",
                 videoId: "gnGHarl9dIY",
-                historia: "Dicen que los ojos son el espejo del alma, y los tuyos son el milagro más hermoso que he visto. En ellos encuentro todo lo que siempre busqué: paz, amor y mi hogar. Cada vez que me miras, entiendo que el amor verdadero existe 💫👀❤️"
+                historia: "Dicen que los ojos son el espejo del alma, y los tuyos son el milagro más hermoso que he visto. En ellos encuentro todo lo que siempre busqué: paz, amor y mi hogar 💫👀❤️"
             }
         ];
 
@@ -104,7 +104,7 @@
         }
 
         function mostrarCancion(cancion) {
-            reproductor.src = `https://www.youtube.com/embed/${cancion.videoId}?autoplay=1`;
+            reproductor.src = `https://www.youtube.com/embed/${cancion.videoId}?autoplay=1&rel=0&modestbranding=1`;
             tituloActual.textContent = cancion.titulo;
             artistaActual.textContent = cancion.artista;
             historiaActual.textContent = cancion.historia;
